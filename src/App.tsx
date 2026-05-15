@@ -255,6 +255,8 @@ const HOMES: Home[] = [
       "https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1505693535623-6b41d85d9fd7?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
     ],
     badge: "Budget",
     location: "Syokimau",
@@ -421,7 +423,7 @@ export default function App() {
   }, [filters.destination, filters.bedroomSize, filters.nameQuery]);
 
   const bookingSummary = selectedHome
-    ? [{ label: "Total price", value: money(selectedHome.price + 22 + 18) }]
+    ? [{ label: "Total price", value: money(selectedHome.price + 0) }]
     : [];
 
   const searchSelectClass =
