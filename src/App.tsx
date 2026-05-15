@@ -38,9 +38,13 @@ const HOMES: Home[] = [
       "/images/K8 couch.jpg",
       "/images/K8 kitchen.jpg",
       "/images/K8 table.jpg",
-      "/images/K8 main image.jpg",
-      "/images/K8 main image.jpg",
-      "/images/K8 main image.jpg",
+      "/images/K8-image (1).jpeg",
+      "/images/K8-image (2).jpeg",
+      "/images/K8-image (3).jpeg",
+      "/images/K8-image (4).jpeg",
+      "/images/K8-image (5).jpeg",
+      "/images/K8-image (6).jpeg",
+      "/images/K8-image (7).jpeg",
     ],
     badge: "Guest favorite",
     location: "Syokimau",
@@ -345,7 +349,7 @@ function BelaireLogo() {
       </div>
       <div className="hidden text-left sm:block">
         <div className="text-lg font-semibold tracking-[0.08em] text-[#4d3a2f]">BELAIRE</div>
-        <div className="text-[10px] uppercase tracking-[0.32em] text-[#8b705c]">Boutique stay contact +254 728530427</div>
+        <div className="text-[10px] uppercase tracking-[0.32em] text-[#8b705c]">Boutique stays</div>
       </div>
     </div>
   );
