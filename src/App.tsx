@@ -345,7 +345,7 @@ function BelaireLogo() {
       </div>
       <div className="hidden text-left sm:block">
         <div className="text-lg font-semibold tracking-[0.08em] text-[#4d3a2f]">BELAIRE</div>
-        <div className="text-[10px] uppercase tracking-[0.32em] text-[#8b705c]">Boutique stays</div>
+        <div className="text-[10px] uppercase tracking-[0.32em] text-[#8b705c]">Boutique stay contact +254 728530427</div>
       </div>
     </div>
   );
