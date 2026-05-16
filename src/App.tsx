@@ -85,7 +85,7 @@ const HOMES: Home[] = [
     title: "Jiji Apartments",
     price: 2500,
     rating: "4.99",
-    image: "/images/K8/JIJI/Jiji (1)",
+    image: "/images/K8/JIJI/Jiji (1).jpeg",
     gallery: [
       "/images/K8/JIJI/Jiji (1).jpeg",
       "/images/K8/JIJI/Jiji (2).jpeg",
