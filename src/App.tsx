@@ -493,11 +493,13 @@ export default function App() {
   </div>
 
   <a
-    href="tel:+254728530427"
-    className="rounded-full bg-[#b78b68] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03]"
-  >
-    +254 728 530 427
-  </a>
+  href="https://wa.me/254728530427"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03]"
+>
+  WhatsApp Us
+</a>
 
   <button
     type="button"
