@@ -472,32 +472,49 @@ export default function App() {
           </button>
 
           <nav className="hidden items-center gap-6 md:flex">
-            <div className="relative">
-              <input
-                type="text"
-                value={filters.nameQuery}
-                onChange={(event) => updateFilter("nameQuery", event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") handleSearch();
-                }}
-                placeholder="Search by house name..."
-                className="w-56 rounded-full border border-[#e4d3c2] bg-[#f8f1e7] py-2 pl-10 pr-4 text-sm text-[#6f5a49] outline-none shadow-sm placeholder:text-[#b29b87] focus:border-[#c9ad94] focus:bg-white focus:ring-2 focus:ring-[#e8d8c8]/60"
-              />
-              <button
-                type="button"
-                onClick={handleSearch}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a7b62]"
-              >
-                <SearchIcon />
-              </button>
-            </div>
-            <button type="button" onClick={() => setView("home")} className="border-b-2 border-[#7d5f49] pb-2 text-sm font-medium">
-              Homes
-            </button>
-            <button type="button" onClick={() => setView("contact")} className="pb-2 text-sm font-medium text-[#8f7765] hover:text-[#4d3a2f]">
-              Contact information
-            </button>
-          </nav>
+  <div className="relative">
+    <input
+      type="text"
+      value={filters.nameQuery}
+      onChange={(event) => updateFilter("nameQuery", event.target.value)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter") handleSearch();
+      }}
+      placeholder="Search by house name..."
+      className="w-56 rounded-full border border-[#e4d3c2] bg-[#f8f1e7] py-2 pl-10 pr-4 text-sm text-[#6f5a49] outline-none shadow-sm placeholder:text-[#b29b87] focus:border-[#c9ad94] focus:bg-white focus:ring-2 focus:ring-[#e8d8c8]/60"
+    />
+    <button
+      type="button"
+      onClick={handleSearch}
+      className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a7b62]"
+    >
+      <SearchIcon />
+    </button>
+  </div>
+
+  <a
+    href="tel:+254728530427"
+    className="rounded-full bg-[#b78b68] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03]"
+  >
+    +254 728 530 427
+  </a>
+
+  <button
+    type="button"
+    onClick={() => setView("home")}
+    className="border-b-2 border-[#7d5f49] pb-2 text-sm font-medium"
+  >
+    Homes
+  </button>
+
+  <button
+    type="button"
+    onClick={() => setView("contact")}
+    className="pb-2 text-sm font-medium text-[#8f7765] hover:text-[#4d3a2f]"
+  >
+    Contact information
+  </button>
+</nav>
         </div>
       </header>
 
