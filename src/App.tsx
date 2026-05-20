@@ -380,7 +380,13 @@ function ListingCard({ home, onClick, compact = false }: { home: Home; onClick: 
       </div>
       <div className={compact ? "space-y-2 p-4" : "space-y-2 p-5"}>
         <div className={compact ? "text-lg font-medium leading-snug" : "text-2xl font-medium text-[#4d3a2f]"}>{home.title}</div>
-        <div className="text-xs uppercase tracking-[0.18em] text-[#9b806a]">{home.location}</div>
+        <div className="text-xs uppercase tracking-[0.18em] text-[#9b806a]">
+  {home.location}
+</div>
+
+<div className="text-sm font-medium text-[#7f6a58]">
+  {home.bedrooms}
+</div>
         <div className="text-sm text-[#7f6a58]">{money(home.price)} for 1 night • ★ {home.rating}</div>
       </div>
     </motion.button>
