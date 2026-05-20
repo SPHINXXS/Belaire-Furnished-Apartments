@@ -498,7 +498,7 @@ export default function App() {
   rel="noopener noreferrer"
   className="rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03]"
 >
-  WhatsApp Us
+  +254 704 137 740
 </a>
 
   <button
