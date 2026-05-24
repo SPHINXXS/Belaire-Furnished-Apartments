@@ -376,7 +376,11 @@ function ListingCard({ home, onClick, compact = false }: { home: Home; onClick: 
       <img
   src={home.image}
   alt={home.title}
-  className={compact ? "h-44 w-full object-contain bg-[#f5ebdd]" : "h-72 w-full object-contain bg-[#f5ebdd]"}
+  className={
+    compact
+      ? "h-48 w-full object-cover object-center"
+      : "h-80 w-full object-cover object-center"
+  }
 />
         <div className="absolute left-4 top-4 rounded-full bg-[#f8efe3] px-4 py-2 text-sm font-medium text-[#5c4536] shadow-sm">
           {home.badge}
@@ -784,11 +788,11 @@ export default function App() {
               </button>
               <div className="flex max-h-[92vh] flex-col overflow-y-auto">
                 <div className="w-full">
-                  <div className="relative h-[240px] sm:h-[380px] w-full overflow-hidden">
+                  <div className="relative h-[280px] sm:h-[420px] w-full overflow-hidden">
                   <img
   src={selectedHome.gallery[galleryIndex]}
   alt={`${selectedHome.title} view ${galleryIndex + 1}`}
-  className="h-full w-full object-contain bg-[#f3ede5]"
+  className="h-full w-full object-cover object-center"
 />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#3a2b1e]/50 via-transparent to-transparent" />
                     <button type="button" onClick={() => setGalleryIndex((galleryIndex - 1 + selectedHome.gallery.length) % selectedHome.gallery.length)} className="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[#6e5644] shadow-sm backdrop-blur transition hover:scale-[1.04]">
