@@ -29,7 +29,7 @@ const LOGO_SRC = "/Belaire logo.png";
 
 const HOMES: Home[] = [
   {
-    title: "Greencity Gardens",
+    title: "Greencity Gardens 3 Bedroom",
     price: 7000,
     rating: "4.96",
     image: "/images/K8/K8 main image.jpg",
@@ -127,7 +127,7 @@ const HOMES: Home[] = [
     tags: ["Belaire Homestays", "belaire", "ruaka", "1 bedroom", "1 bed"],
   },
   {
-    title: "Greencity Gardens",
+    title: "Greencity Gardens Studio",
     price: 2800,
     rating: "4.93",
     image: "/images/K8/K8 main image.jpg",
@@ -226,7 +226,7 @@ const HOMES: Home[] = [
     tags: ["jalde apartments", "ruaka", "1 bedroom", "jalde"],
   },
   {
-    title: "Greencity Gardens",
+    title: "Greencity Gardens 2 Bedroom",
     price: 5000,
     rating: "4.97",
     image: "/images/K8/K8 main image.jpg",
@@ -253,7 +253,7 @@ const HOMES: Home[] = [
     tags: ["greencity gardens", "syokimau", "2 bedroom", "gardens"],
   },
   {
-    title: "Greencity Gardens",
+    title: "Greencity Gardens 1 Bedroom",
     price: 3500,
     rating: "4.85",
     image: "/images/K8/K8 main image.jpg",
@@ -373,7 +373,11 @@ function ListingCard({ home, onClick, compact = false }: { home: Home; onClick: 
       className="overflow-hidden rounded-[2rem] border border-[#eadfce] bg-[#fbf7f1] text-left shadow-[0_10px_30px_rgba(120,85,60,0.08)] hover:shadow-[0_18px_40px_rgba(120,85,60,0.14)]"
     >
       <div className="relative">
-        <img src={home.image} alt={home.title} className={compact ? "h-44 w-full object-cover" : "h-72 w-full object-cover"} />
+      <img
+  src={home.image}
+  alt={home.title}
+  className={compact ? "h-44 w-full object-contain bg-[#f5ebdd]" : "h-72 w-full object-contain bg-[#f5ebdd]"}
+/>
         <div className="absolute left-4 top-4 rounded-full bg-[#f8efe3] px-4 py-2 text-sm font-medium text-[#5c4536] shadow-sm">
           {home.badge}
         </div>
@@ -462,11 +466,8 @@ export default function App() {
   };
 
   const handleSearch = () => {
-    const match = filteredHomes[0];
-    if (match) {
-      setView("home");
-      openHome(match);
-    }
+    setView("home");
+    resetModal();
   };
 
   const closeToHome = () => {
@@ -482,12 +483,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#f7f1e8] text-[#4d3a2f]">
       <header className="sticky top-0 z-30 border-b border-[#e8dccd] bg-[#f7f1e8]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-10">
           <button type="button" onClick={closeToHome}>
             <BelaireLogo />
           </button>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="flex flex-wrap items-center justify-end gap-3 md:gap-6">
   <div className="relative">
     <input
       type="text"
@@ -497,7 +498,7 @@ export default function App() {
         if (event.key === "Enter") handleSearch();
       }}
       placeholder="Search by house name..."
-      className="w-56 rounded-full border border-[#e4d3c2] bg-[#f8f1e7] py-2 pl-10 pr-4 text-sm text-[#6f5a49] outline-none shadow-sm placeholder:text-[#b29b87] focus:border-[#c9ad94] focus:bg-white focus:ring-2 focus:ring-[#e8d8c8]/60"
+      className="w-40 sm:w-56 rounded-full border border-[#e4d3c2] bg-[#f8f1e7] py-2 pl-10 pr-4 text-sm text-[#6f5a49] outline-none shadow-sm placeholder:text-[#b29b87] focus:border-[#c9ad94] focus:bg-white focus:ring-2 focus:ring-[#e8d8c8]/60"
     />
     <button
       type="button"
@@ -540,7 +541,7 @@ export default function App() {
         <main>
           <section className="mx-auto max-w-4xl px-6 pb-6 pt-6 lg:px-10">
             <div className="rounded-[1.5rem] border border-[#eadfce] bg-[#fbf7f1] p-2 shadow-[0_6px_20px_rgba(120,85,60,0.08)]">
-              <div className="grid gap-3 md:grid-cols-[1.2fr_1fr_auto]">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-[1.2fr_1fr_auto]">
                 <div className="rounded-[1.4rem] px-3 py-2">
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.18em] text-[#8e7764]">Where</label>
                   <div className="relative">
@@ -579,12 +580,12 @@ export default function App() {
 
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
             <div className="mb-6 flex items-center justify-between gap-4">
-              <h2 className="text-4xl font-semibold tracking-tight">Popular homes in Belaire</h2>
+              <h2 className="text-2xl font-semibold tracking-tight sm:text-4xl">Popular homes in Belaire</h2>
               <button type="button" onClick={() => setView("all")} className="rounded-full border border-[#e6d8c8] bg-[#fbf7f1] px-4 py-2 text-sm font-medium shadow-sm transition hover:-translate-y-0.5">
                 View all
               </button>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {filteredHomes.length ? (
                 filteredHomes.slice(0, 4).map((home) => <ListingCard key={home.title} home={home} onClick={openHome} />)
               ) : (
@@ -641,7 +642,7 @@ export default function App() {
         {view === "all" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 overflow-y-auto bg-[#f7f1e8]">
             <div className="sticky top-0 z-10 border-b border-[#eadfce] bg-[#f7f1e8]/95 backdrop-blur">
-              <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-10">
                 <div>
                   <div className="text-sm uppercase tracking-[0.22em] text-[#9a7b62]">Belaire collection</div>
                   <h2 className="mt-1 text-3xl font-semibold tracking-tight text-[#4d3a2f]">View all homes</h2>
@@ -685,7 +686,7 @@ export default function App() {
         {view === "contact" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 overflow-y-auto bg-[#f7f1e8]">
             <div className="sticky top-0 z-10 border-b border-[#eadfce] bg-[#f7f1e8]/95 backdrop-blur">
-              <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-10">
+            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-10">
                 <div>
                   <div className="text-xs uppercase tracking-[0.24em] text-[#9a7b62]">Belaire BnB</div>
                   <h1 className="mt-1 text-3xl font-semibold tracking-tight text-[#4d3a2f]">Contact information</h1>
@@ -703,7 +704,7 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="rounded-[2rem] bg-[#c7ab8d] p-8 text-white shadow-[0_18px_40px_rgba(120,85,60,0.18)] lg:p-10">
                   <div className="inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] backdrop-blur-sm">We’d love to host you</div>
                   <h2 className="mt-5 text-4xl font-semibold leading-tight">Let’s help you find the perfect Belaire stay.</h2>
@@ -777,14 +778,18 @@ export default function App() {
       <AnimatePresence>
         {selectedHome && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-[#2b2119]/50 px-4 py-8 backdrop-blur-sm">
-            <motion.div initial={{ opacity: 0, y: 24, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12, scale: 0.98 }} transition={{ type: "spring", stiffness: 240, damping: 22 }} className="relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-[2rem] bg-[#fcf8f2] shadow-[0_30px_80px_rgba(43,33,25,0.28)]">
+            <motion.div initial={{ opacity: 0, y: 24, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12, scale: 0.98 }} transition={{ type: "spring", stiffness: 240, damping: 22 }} className="relative h-[95vh] w-full max-w-5xl overflow-hidden rounded-[1.5rem] bg-[#fcf8f2] shadow-[0_30px_80px_rgba(43,33,25,0.28)] sm:rounded-[2rem]">
               <button type="button" onClick={resetModal} className="absolute right-5 top-5 z-20 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-[#6e5644] shadow-sm transition hover:scale-[1.03]">
                 Close
               </button>
               <div className="flex max-h-[92vh] flex-col overflow-y-auto">
                 <div className="w-full">
-                  <div className="relative h-[380px] w-full overflow-hidden">
-                    <img src={selectedHome.gallery[galleryIndex]} alt={`${selectedHome.title} view ${galleryIndex + 1}`} className="h-full w-full object-cover" />
+                  <div className="relative h-[240px] sm:h-[380px] w-full overflow-hidden">
+                  <img
+  src={selectedHome.gallery[galleryIndex]}
+  alt={`${selectedHome.title} view ${galleryIndex + 1}`}
+  className="h-full w-full object-contain bg-[#f3ede5]"
+/>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#3a2b1e]/50 via-transparent to-transparent" />
                     <button type="button" onClick={() => setGalleryIndex((galleryIndex - 1 + selectedHome.gallery.length) % selectedHome.gallery.length)} className="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[#6e5644] shadow-sm backdrop-blur transition hover:scale-[1.04]">
                       ←
@@ -794,7 +799,7 @@ export default function App() {
                     </button>
                     <div className="absolute bottom-6 left-6 right-6 text-white">
                       <div className="mb-3 inline-flex rounded-full bg-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] backdrop-blur-sm">{selectedHome.badge}</div>
-                      <h3 className="text-4xl font-semibold leading-tight">{selectedHome.title}</h3>
+                      <h3 className="text-2xl font-semibold leading-tight sm:text-4xl">{selectedHome.title}</h3>
                       <p className="mt-2 text-sm uppercase tracking-[0.25em] text-white/80">{selectedHome.location} • {selectedHome.bedrooms}</p>
                     </div>
                   </div>
@@ -802,7 +807,7 @@ export default function App() {
 
                 <div className="flex flex-col justify-between p-6 lg:p-8">
                   <div>
-                    <div className="flex items-start justify-between gap-4">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <p className="text-sm uppercase tracking-[0.2em] text-[#9a7b62]">Boutique stay</p>
                         <h4 className="mt-2 text-3xl font-semibold text-[#4d3a2f]">Designed for a memorable Belaire experience</h4>
@@ -813,7 +818,7 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="mt-5 flex gap-3 overflow-x-auto pb-1">
+                    <div className="mt-5 flex gap-3 overflow-x-auto pb-3">
                       {selectedHome.gallery.map((image, index) => (
                         <button key={`${selectedHome.title}-${index}`} type="button" onClick={() => setGalleryIndex(index)} className={`relative h-20 w-24 shrink-0 overflow-hidden rounded-2xl border ${galleryIndex === index ? "border-[#b78b68] ring-2 ring-[#e8d8c8]" : "border-[#eadfce]"}`}>
                           <img src={image} alt={`${selectedHome.title} thumbnail ${index + 1}`} className="h-full w-full object-cover" />
