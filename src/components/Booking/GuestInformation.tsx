@@ -1,4 +1,7 @@
-import { BookingFormData, UpdateBookingForm } from "./BookingTypes";
+import type {
+  BookingFormData,
+  UpdateBookingForm,
+} from "./BookingTypes";
 
 type GuestInformationProps = {
   form: BookingFormData;

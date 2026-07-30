@@ -1,4 +1,4 @@
-import { BookingFormData } from "./BookingTypes";
+import type { BookingFormData } from "./BookingTypes";
 
 type StaySummaryProps = {
   form: BookingFormData;

@@ -1,6 +1,6 @@
 import ApartmentCard from "./ApartmentCard";
 import LocationCard from "./LocationCard";
-import { BookingFormData, UpdateBookingForm } from "./BookingTypes";
+import type{ BookingFormData, UpdateBookingForm } from "./BookingTypes";
 import { apartments } from "./apartments";
 
 type StayPreferencesProps = {

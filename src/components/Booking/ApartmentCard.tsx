@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Apartment } from "./BookingTypes";
+import type{ Apartment } from "./BookingTypes";
 
 type ApartmentCardProps = {
   apartment: Apartment;

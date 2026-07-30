@@ -1,4 +1,4 @@
-import { BookingFormData } from "./BookingTypes";
+import type { BookingFormData } from "./BookingTypes";
 
 type SubmitBarProps = {
   form: BookingFormData;
