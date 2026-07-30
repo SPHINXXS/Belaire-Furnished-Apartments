@@ -50,15 +50,73 @@ export default function ContactCards() {
             </div>
           </a>
   
-          <div className="rounded-2xl border border-[#eadfce] bg-white p-4">
-            <div className="text-2xl">📱</div>
-            <div className="mt-2 font-semibold text-[#4d3a2f]">
-              Socials
-            </div>
-            <div className="text-xs text-[#7c6655]">
-              Instagram & TikTok
-            </div>
-          </div>
+          <a
+  href="https://instagram.com/belaire_airbnbs"
+  target="_blank"
+  rel="noreferrer"
+  className="rounded-2xl border border-[#eadfce] bg-white p-4 transition hover:border-[#E1306C]"
+>
+  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF0F6]">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <rect
+        x="2"
+        y="2"
+        width="20"
+        height="20"
+        rx="5"
+        stroke="#E1306C"
+        strokeWidth="2"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="4"
+        stroke="#E1306C"
+        strokeWidth="2"
+      />
+      <circle cx="17" cy="7" r="1" fill="#E1306C" />
+    </svg>
+  </div>
+
+  <div className="mt-3 font-semibold text-[#4d3a2f]">
+    Instagram
+  </div>
+
+  <div className="text-xs text-[#7c6655]">
+    @belaire_airbnbs
+  </div>
+</a>
+
+<a
+  href="https://tiktok.com/@belaire_bnb"
+  target="_blank"
+  rel="noreferrer"
+  className="rounded-2xl border border-[#eadfce] bg-white p-4 transition hover:border-black"
+>
+  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F4F4]">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M9 3v12.5a3.5 3.5 0 11-2.5-3.35V9.2A6.5 6.5 0 1013 15.7V8.5a8.5 8.5 0 004.5 1.3V6.5a5.5 5.5 0 01-3.5-1.3V3H9z" />
+    </svg>
+  </div>
+
+  <div className="mt-3 font-semibold text-[#4d3a2f]">
+    TikTok
+  </div>
+
+  <div className="text-xs text-[#7c6655]">
+    @belaire_bnb
+  </div>
+</a>
         </div>
       </section>
     );
