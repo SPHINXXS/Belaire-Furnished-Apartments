@@ -1,5 +1,6 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import BookingDrawer from "./components/BookingDrawer";
 
 type Home = {
   title: string;
@@ -992,6 +993,10 @@ export default function App() {
     </>
   )}
 </AnimatePresence>
+<BookingDrawer
+    isOpen={bookingMenuOpen}
+    onClose={() => setBookingMenuOpen(false)}
+/>
     </div>
   );
 }
