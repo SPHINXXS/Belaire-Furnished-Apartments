@@ -430,6 +430,7 @@ export default function App() {
     bedroomSize: "",
     nameQuery: "",
   });
+  const [bookingMenuOpen, setBookingMenuOpen] = useState(false);
 
   const filteredHomes = useMemo(() => {
     const tagTokens = tokenize(`${filters.destination} ${filters.bedroomSize}`);
@@ -575,6 +576,41 @@ export default function App() {
   >
     Contact information
   </button>
+  <button
+  type="button"
+  onClick={() => setView("contact")}
+  className="pb-2 text-sm font-medium text-[#8f7765] hover:text-[#4d3a2f]"
+>
+  Contact information
+</button>
+
+{/* ADD THIS */}
+<button
+  type="button"
+  onClick={() => setBookingMenuOpen(true)}
+  className="group flex items-center gap-3 rounded-full border border-[#e5d7c8] bg-[#fbf7f1] px-3 py-2 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#c7aa8f] hover:shadow-md"
+>
+  <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e5d7c8] bg-white transition-colors duration-300 group-hover:bg-[#f6ede4]">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 text-[#6d5848]"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4 7h16M4 12h16M4 17h16"
+      />
+    </svg>
+  </div>
+
+  <span className="pr-2 text-sm font-semibold tracking-wide text-[#5d4737]">
+    Booking
+  </span>
+</button>
 </nav>
         </div>
       </header>
