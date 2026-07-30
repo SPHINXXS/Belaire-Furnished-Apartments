@@ -10,6 +10,8 @@ export default function BookingPanel({
   isOpen,
   onClose,
 }: BookingPanelProps) {
+  const [selectedCard, setSelectedCard] = useState("");
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -108,24 +110,74 @@ export default function BookingPanel({
                   Stay Preferences
                 </h2>
                 <div className="mt-6 grid gap-4">
-                  <select className={input}
-                    value={form.location}
-                    onChange={e=>updateForm("location",e.target.value)}>
-                    <option value="">Preferred Location</option>
-                    <option>Syokimau</option>
-                    <option>Ruaka</option>
-                    <option>Thindigua</option>
-                  </select>
+                  <div>
+                    <p className="mb-3 text-sm font-medium text-[#7c6655]">Choose a location</p>
+                    <div className="grid gap-3">
+                      {[
+                        {name:"Syokimau",sub:"Near JKIA"},
+                        {name:"Ruaka",sub:"Near Two Rivers"},
+                        {name:"Thindigua",sub:"Near Garden City"},
+                      ].map(loc=>(
+                        <button
+                          key={loc.name}
+                          type="button"
+                          onClick={()=>updateForm("location",loc.name)}
+                          className={`rounded-2xl border p-4 text-left transition ${
+                            form.location===loc.name
+                            ? "border-[#b78b68] bg-[#f8f1e7]"
+                            : "border-[#eadfce] bg-white hover:border-[#b78b68]"
+                          }`}>
+                          <div className="font-semibold text-[#4d3a2f]">📍 {loc.name}</div>
+                          <div className="text-sm text-[#7c6655]">{loc.sub}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-                  <select className={input}
-                    value={form.apartmentSize}
-                    onChange={e=>updateForm("apartmentSize",e.target.value)}>
-                    <option value="">Apartment Size</option>
-                    <option>Studio</option>
-                    <option>1 Bedroom</option>
-                    <option>2 Bedroom</option>
-                    <option>3 Bedroom</option>
-                  </select>
+                  <div>
+                    <p className="mb-3 text-sm font-medium text-[#7c6655]">Choose an apartment</p>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        {title:"Studio"},
+                        {title:"1 Bedroom"},
+                        {title:"2 Bedroom"},
+                        {title:"3 Bedroom"},
+                      ].map((apt)=>(
+                        <button
+                          type="button"
+                          key={apt.title}
+                          onClick={()=>{
+                            setSelectedCard(apt.title);
+                            updateForm("apartmentSize",apt.title);
+                          }}
+                          className={`rounded-3xl overflow-hidden border transition ${
+                            selectedCard===apt.title
+                            ? "border-[#b78b68] ring-2 ring-[#d9b999]"
+                            : "border-[#eadfce] hover:border-[#b78b68]"
+                          }`}
+                        >
+                          <div className="relative h-40 bg-gradient-to-br from-[#e8dccd] to-[#d8c0a7] flex items-center justify-center">
+                            <div className="absolute inset-3 rounded-2xl border-2 border-dashed border-white/70 flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="text-4xl">🖼️</div>
+                                <div className="mt-2 text-xs font-semibold tracking-wider text-[#6d5645] uppercase">
+                                  Replace with apartment photo
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="bg-white p-4 text-center">
+                            <div className="font-semibold text-[#4d3a2f]">{apt.title}</div>
+                            <div className="mt-1 text-xs text-[#7c6655]">Fully Furnished • Fast Wi-Fi</div>
+                            <div className="mt-2 flex justify-center gap-3 text-xs text-[#9b806a]">
+                              <span>🛏 Sleeps 2–6</span>
+                              <span>🍳 Kitchen</span>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <input className={input} type="date"
@@ -136,15 +188,16 @@ export default function BookingPanel({
                       onChange={e=>updateForm("departureDate",e.target.value)} />
                   </div>
 
-                  <select className={input}
-                    value={form.guests}
-                    onChange={e=>updateForm("guests",e.target.value)}>
-                    {[1,2,3,4,5,6,7,8].map(n=>(
-                      <option key={n} value={String(n)}>
-                        {n} Guest{n>1?"s":""}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="rounded-2xl border border-[#eadfce] bg-white p-4">
+                    <p className="text-sm font-medium text-[#7c6655] mb-3">Guests</p>
+                    <div className="flex items-center justify-between">
+                      <button type="button" className="h-10 w-10 rounded-full bg-[#f5ebdd]"
+                        onClick={()=>updateForm("guests",String(Math.max(1,Number(form.guests)-1)))}>−</button>
+                      <div className="font-semibold text-[#4d3a2f]">{form.guests} Guest{form.guests==="1" ? "" : "s"}</div>
+                      <button type="button" className="h-10 w-10 rounded-full bg-[#f5ebdd]"
+                        onClick={()=>updateForm("guests",String(Math.min(8,Number(form.guests)+1)))}>+</button>
+                    </div>
+                  </div>
                 </div>
               </section>
 
@@ -160,6 +213,54 @@ export default function BookingPanel({
                   onChange={e=>updateForm("additionalRequests",e.target.value)}
                 />
               </section>
+
+              
+              <section className="mt-12 rounded-3xl border border-[#eadfce] bg-[#f8f1e7] p-6">
+                <h2 className="text-xl font-semibold text-[#4d3a2f]">Your Stay Summary</h2>
+                <div className="mt-4 space-y-2 text-sm text-[#6d5645]">
+                  <div>📍 {form.location || "Choose a location"}</div>
+                  <div>🏠 {form.apartmentSize || "Choose an apartment"}</div>
+                  <div>👥 {form.guests} Guest{form.guests==="1" ? "" : "s"}</div>
+                  <div>📅 {form.arrivalDate || "Arrival"} → {form.departureDate || "Departure"}</div>
+                </div>
+              </section>
+
+
+              <section className="mt-12">
+                <h2 className="text-2xl font-semibold text-[#4d3a2f]">
+                  Contact Belaire
+                </h2>
+                <p className="mt-2 text-sm text-[#7c6655]">
+                  Prefer to speak with us directly? Reach us using any of the options below.
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-4">
+                  <a href="tel:+254728530427" className="rounded-2xl border border-[#eadfce] bg-white p-4 hover:border-[#b78b68] transition">
+                    <div className="text-2xl">📞</div>
+                    <div className="mt-2 font-semibold text-[#4d3a2f]">Call</div>
+                    <div className="text-xs text-[#7c6655]">+254 728 530 427</div>
+                  </a>
+
+                  <a href="https://wa.me/254728530427" target="_blank" rel="noreferrer" className="rounded-2xl border border-[#eadfce] bg-white p-4 hover:border-[#25D366] transition">
+                    <div className="text-2xl">💬</div>
+                    <div className="mt-2 font-semibold text-[#4d3a2f]">WhatsApp</div>
+                    <div className="text-xs text-[#7c6655]">Start a chat</div>
+                  </a>
+
+                  <a href="mailto:belairedistillers@gmail.com" className="rounded-2xl border border-[#eadfce] bg-white p-4 hover:border-[#b78b68] transition">
+                    <div className="text-2xl">✉️</div>
+                    <div className="mt-2 font-semibold text-[#4d3a2f]">Email</div>
+                    <div className="text-xs text-[#7c6655]">Booking enquiries</div>
+                  </a>
+
+                  <div className="rounded-2xl border border-[#eadfce] bg-white p-4">
+                    <div className="text-2xl">📱</div>
+                    <div className="mt-2 font-semibold text-[#4d3a2f]">Socials</div>
+                    <div className="text-xs text-[#7c6655]">Instagram & TikTok</div>
+                  </div>
+                </div>
+              </section>
+
             </div>
 
             <div className="sticky bottom-0 border-t border-[#eadfce] bg-[#fcf8f2] p-6">
