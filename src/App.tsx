@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import BookingDrawer from "./components/BookingDrawer";
+import BookingDrawer from "./components/BookingPanel";
 
 type Home = {
   title: string;
