@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookingFormData } from "../components/Booking/BookingTypes";
+import type{ BookingFormData } from "../components/Booking/BookingTypes";
 
 const initialForm: BookingFormData = {
   firstName: "",

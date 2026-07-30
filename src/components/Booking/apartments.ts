@@ -1,4 +1,4 @@
-import { Apartment } from "./BookingTypes";
+import type{ Apartment } from "./BookingTypes";
 
 export const apartments: Apartment[] = [
   {
