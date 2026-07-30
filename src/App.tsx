@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import BookingDrawer from "./components/BookingPanel";
+import BookingDrawer from "./components/Booking/BookingPanel";
 
 type Home = {
   title: string;
@@ -932,67 +932,9 @@ export default function App() {
             </motion.div>
           </motion.div>
         )}
+
+        
       </AnimatePresence>
-      {/* Booking Menu */}
-<AnimatePresence>
-  {bookingMenuOpen && (
-    <>
-      {/* Dark Background */}
-      <motion.div
-        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={() => setBookingMenuOpen(false)}
-      />
-
-      {/* Side Panel */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        transition={{ type: "spring", stiffness: 260, damping: 28 }}
-        className="fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-[#fcf8f2] shadow-2xl"
-      >
-        <div className="flex h-full flex-col">
-
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#eadfce] p-6">
-
-            <div>
-              <h2 className="text-2xl font-semibold text-[#4d3a2f]">
-                Booking
-              </h2>
-
-              <p className="text-sm text-[#8b705c]">
-                Belaire Boutique Stays
-              </p>
-            </div>
-
-            <button
-              onClick={() => setBookingMenuOpen(false)}
-              className="rounded-full p-2 hover:bg-[#f5ebdd]"
-            >
-              ✕
-            </button>
-
-          </div>
-
-          {/* Body */}
-
-          <div className="flex-1 p-8">
-
-            <p className="text-[#6d5848]">
-              Booking form coming next...
-            </p>
-
-          </div>
-
-        </div>
-      </motion.div>
-    </>
-  )}
-</AnimatePresence>
 <BookingDrawer
     isOpen={bookingMenuOpen}
     onClose={() => setBookingMenuOpen(false)}
