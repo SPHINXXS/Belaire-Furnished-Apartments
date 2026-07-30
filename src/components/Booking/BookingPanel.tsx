@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import StaySummary from "./StaySummary.tsx";
+import StaySummary from "./StaySummary";
 import ContactCards from "./ContactCards";
 import SubmitBar from "./SubmitBar";
 
