@@ -26,10 +26,10 @@ export default function SubmitBar({
 
       <button
   onClick={onSubmit}
-  className="..."
+  className="w-full rounded-2xl bg-[#b78b68] px-6 py-4 text-lg font-semibold text-white shadow-lg transition hover:bg-[#a67957] hover:shadow-xl"
 >
-        Request Availability
-      </button>
+  Request Availability
+</button>
 
     </div>
   );
