@@ -2,10 +2,12 @@ import type { BookingFormData } from "./BookingTypes";
 
 type SubmitBarProps = {
   form: BookingFormData;
+  onSubmit: () => void;
 };
 
 export default function SubmitBar({
   form,
+  onSubmit,
 }: SubmitBarProps) {
   return (
     <div className="sticky bottom-0 border-t border-[#eadfce] bg-[#efe2d1] p-6">
@@ -23,8 +25,9 @@ export default function SubmitBar({
       </div>
 
       <button
-        className="w-full rounded-2xl bg-[#b78b68] py-4 text-lg font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#a57b59]"
-      >
+  onClick={onSubmit}
+  className="..."
+>
         Request Availability
       </button>
 
