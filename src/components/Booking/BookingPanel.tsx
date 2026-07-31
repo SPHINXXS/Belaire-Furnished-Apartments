@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import StaySummary from "./StaySummary";
 import ContactCards from "./ContactCards";
 import SubmitBar from "./SubmitBar";
+import emailjs from "@emailjs/browser";
 
 type BookingPanelProps = {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function BookingPanel({
 
   
   const [form, setForm] = useState({
+    
     firstName: "",
     lastName: "",
     email: "",
@@ -27,6 +29,7 @@ export default function BookingPanel({
     guests: "2",
     additionalRequests: "",
   });
+  const [bookingSent, setBookingSent] = useState(false);
 
   const updateForm = (
     field: keyof typeof form,
@@ -36,7 +39,71 @@ export default function BookingPanel({
   const input =
     "w-full rounded-2xl border border-[#e6d8ca] bg-white px-5 py-4 outline-none transition focus:border-[#b78b68]";
 
-  return (
+ const handleSubmit = async () => {
+  try {
+    // Basic validation
+    if (
+      !form.firstName ||
+      !form.lastName ||
+      !form.email ||
+      !form.phone ||
+      !form.location ||
+      !form.apartmentSize ||
+      !form.arrivalDate ||
+      !form.departureDate
+    ) {
+      alert("Please complete all required fields before submitting.");
+      return;
+    }
+
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        first_name: form.firstName,
+        last_name: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        location: form.location,
+        apartment: form.apartmentSize,
+        arrival: form.arrivalDate,
+        departure: form.departureDate,
+        guests: form.guests,
+        requests: form.additionalRequests,
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
+    setBookingSent(true);
+
+    const whatsappMessage = `Hello Belaire Boutique Stays!
+
+I have just submitted a booking request through your website.
+
+Name: ${form.firstName} ${form.lastName}
+Location: ${form.location}
+Apartment: ${form.apartmentSize}
+Arrival: ${form.arrivalDate}
+Departure: ${form.departureDate}
+Guests: ${form.guests}
+
+Looking forward to hearing from you.`;
+
+    window.open(
+      `https://wa.me/254728530427?text=${encodeURIComponent(
+        whatsappMessage
+      )}`,
+      "_blank"
+    );
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      "Sorry, something went wrong while sending your booking request. Please try again or contact us directly."
+    );
+  }
+};
+    return (
     <AnimatePresence>
       {isOpen && (
         <>
@@ -55,6 +122,71 @@ export default function BookingPanel({
             className="fixed right-0 top-0 z-50 h-screen w-full max-w-[560px] overflow-y-auto rounded-l-[2.5rem] bg-[#efe2d1] shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
           >
             <div className="p-8 pb-32">
+              {bookingSent ? (
+  <div className="flex min-h-[70vh] flex-col items-center justify-center text-center">
+    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#b78b68] text-5xl text-white">
+      ✓
+    </div>
+
+    <h2 className="mt-8 text-3xl font-semibold text-[#4d3a2f]">
+      Booking Request Sent
+    </h2>
+
+    <p className="mt-4 max-w-md text-[#7c6655]">
+      Thank you for choosing Belaire Boutique Stays.
+      We've received your booking request and will contact you shortly.
+    </p>
+
+    <button
+      className="mt-10 rounded-2xl bg-[#25D366] px-8 py-4 font-semibold text-white"
+      onClick={() => {
+        const whatsappMessage = `Hello Belaire Boutique Stays!
+
+I have just submitted a booking request through your website.
+
+Name: ${form.firstName} ${form.lastName}
+Location: ${form.location}
+Apartment: ${form.apartmentSize}
+Arrival: ${form.arrivalDate}
+Departure: ${form.departureDate}
+Guests: ${form.guests}`;
+
+        window.open(
+          `https://wa.me/254728530427?text=${encodeURIComponent(
+            whatsappMessage
+          )}`,
+          "_blank"
+        );
+      }}
+    >
+      Continue to WhatsApp
+    </button>
+
+    <button
+      className="mt-4 text-[#7c6655] underline"
+      onClick={() => {
+  setForm({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    location: "",
+    apartmentSize: "",
+    arrivalDate: "",
+    departureDate: "",
+    guests: "2",
+    additionalRequests: "",
+  });
+
+  setBookingSent(false);
+  onClose();
+}}
+    >
+      Done
+    </button>
+  </div>
+) : (
+  <>
               <div className="flex items-start justify-between">
                 <div>
                   <div className="text-xs uppercase tracking-[0.35em] text-[#9b806a]">
@@ -231,10 +363,17 @@ export default function BookingPanel({
               <StaySummary form={form} />
 
               <ContactCards />
+               </>
+              )}
 
             </div>
 
-            <SubmitBar form={form} />            
+            {!bookingSent && (
+  <SubmitBar
+    form={form}
+    onSubmit={handleSubmit}
+  />
+)}
           </motion.div>
         </>
       )}
