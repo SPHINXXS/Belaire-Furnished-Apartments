@@ -4,6 +4,7 @@ import StaySummary from "./StaySummary";
 import ContactCards from "./ContactCards";
 import SubmitBar from "./SubmitBar";
 import emailjs from "@emailjs/browser";
+import { trackConversion } from "../utils/gtag";
 
 type BookingPanelProps = {
   isOpen: boolean;
@@ -73,6 +74,8 @@ export default function BookingPanel({
       },
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     );
+    // Google Ads conversion
+trackConversion("enquiryForm");
 
     setBookingSent(true);
 
@@ -122,6 +125,7 @@ export default function BookingPanel({
     <button
       className="mt-10 rounded-2xl bg-[#25D366] px-8 py-4 font-semibold text-white"
       onClick={() => {
+          trackConversion("whatsapp");
         const whatsappMessage = `Hello Belaire Boutique Stays!
 
 I have just submitted a booking request through your website.

@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import BookingDrawer from "./components/Booking/BookingPanel";
+import { trackConversion } from "./utils/gtag";
 
 type Home = {
   title: string;
@@ -483,9 +484,16 @@ export default function App() {
   };
 
   const openWhatsAppBooking = () => {
-    const message = `Hello, I'd like to book ${selectedHome?.title ?? "a Belaire stay"}`;
-    window.open(`https://wa.me/254728530427?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-  };
+  trackConversion("whatsapp");
+
+  const message = `Hello, I'd like to book ${selectedHome?.title ?? "a Belaire stay"}`;
+
+  window.open(
+    `https://wa.me/254728530427?text=${encodeURIComponent(message)}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
+};
 
   return (
     <div className="min-h-screen bg-[#f7f1e8] text-[#4d3a2f]">
@@ -518,8 +526,9 @@ export default function App() {
 
   <div className="flex items-center gap-2">
   {/* Call Button */}
-  <a
-    href="tel:+254728530427"
+ <a
+  href="tel:+254728530427"
+  onClick={() => trackConversion("phone")}
     className="flex items-center gap-2 rounded-full bg-[#b78b68] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03] hover:bg-[#a47a59]"
     aria-label="Call Belaire"
   >
@@ -543,9 +552,10 @@ export default function App() {
 
   {/* WhatsApp Button */}
   <a
-    href="https://wa.me/254728530427"
-    target="_blank"
-    rel="noopener noreferrer"
+  href="https://wa.me/254728530427"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => trackConversion("whatsapp")}
     className="flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03] hover:bg-[#1ebe5d]"
     aria-label="Chat on WhatsApp"
   >
