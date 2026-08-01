@@ -4,7 +4,7 @@ import StaySummary from "./StaySummary";
 import ContactCards from "./ContactCards";
 import SubmitBar from "./SubmitBar";
 import emailjs from "@emailjs/browser";
-import { trackConversion } from "/utils/gtag";
+import { trackConversion } from "../../utils/gtag";
 
 type BookingPanelProps = {
   isOpen: boolean;
