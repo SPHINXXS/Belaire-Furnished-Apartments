@@ -31,6 +31,7 @@ export default function BookingPanel({
     additionalRequests: "",
   });
   const [bookingSent, setBookingSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const updateForm = (
     field: keyof typeof form,
@@ -56,6 +57,7 @@ export default function BookingPanel({
       alert("Please complete all required fields before submitting.");
       return;
     }
+    setIsSubmitting(true);
 
     await emailjs.send(
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -76,12 +78,14 @@ export default function BookingPanel({
     );
     // Google Ads conversion
 trackConversion("enquiryForm");
+setIsSubmitting(false);
 
     setBookingSent(true);
 
     
   } catch (error) {
     console.error(error);
+    setIsSubmitting(false);
 
     alert(
       "Sorry, something went wrong while sending your booking request. Please try again or contact us directly."
@@ -356,9 +360,10 @@ Guests: ${form.guests}`;
 
             {!bookingSent && (
   <SubmitBar
-    form={form}
-    onSubmit={handleSubmit}
-  />
+  form={form}
+  onSubmit={handleSubmit}
+  loading={isSubmitting}
+/>
 )}
           </motion.div>
         </>
