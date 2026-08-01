@@ -76,25 +76,7 @@ export default function BookingPanel({
 
     setBookingSent(true);
 
-    const whatsappMessage = `Hello Belaire Boutique Stays!
-
-I have just submitted a booking request through your website.
-
-Name: ${form.firstName} ${form.lastName}
-Location: ${form.location}
-Apartment: ${form.apartmentSize}
-Arrival: ${form.arrivalDate}
-Departure: ${form.departureDate}
-Guests: ${form.guests}
-
-Looking forward to hearing from you.`;
-
-    window.open(
-      `https://wa.me/254728530427?text=${encodeURIComponent(
-        whatsappMessage
-      )}`,
-      "_blank"
-    );
+    
   } catch (error) {
     console.error(error);
 
