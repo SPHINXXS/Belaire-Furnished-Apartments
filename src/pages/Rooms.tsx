@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 export default function Rooms() {
     const navigate = useNavigate();
   return (
-    <>{view === "all" && (
+    <>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 overflow-y-auto bg-[#f7f1e8]">
             <div className="sticky top-0 z-10 border-b border-[#eadfce] bg-[#f7f1e8]/95 backdrop-blur">
             <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-10">
@@ -42,7 +43,7 @@ export default function Rooms() {
               </div>
             </div>
           </motion.div>
-        )}
+        
         </>
   );
 }
